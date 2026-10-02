@@ -1,0 +1,91 @@
+
+@import "tailwindcss";
+
+:root {
+  --background: #080b16;
+  --foreground: #f5f7ff;
+  --muted: #9ba6bd;
+  --accent: #7385ff;
+  --accent-light: #72d3ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: #7385ff;
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  color: var(--accent-light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(65, 91, 194, 0.24),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      #080b16 0%,
+      #10152c 65%,
+      #080b16 100%
+    );
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.gradient-text {
+  background: linear-gradient(110deg, #fff 15%, #aabaff 60%, #6fd5ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 32px, 1200px);
+  }
+}
