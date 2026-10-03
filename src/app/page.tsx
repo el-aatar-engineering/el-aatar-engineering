@@ -1,81 +1,19 @@
-import AboutSection from "@/components/sections/AboutSection";
+
+import { projects } from "@/data/projects";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
-import SkillsSection from "@/components/sections/SkillsSection";
-
-const projects = [
-  {
-    number: "01",
-    slug: "orbital-systems-study",
-    category: "AEROSPACE · CONCEPT",
-    title: "Orbital Systems Study",
-    description:
-      "An exploration of orbital mechanics, mission parameters, and the fundamentals of designing a space mission.",
-    status: "Planned",
-    visual: "orbit",
-  },
-  {
-    number: "02",
-    slug: "flight-dynamics-simulation",
-    category: "SIMULATION · PYTHON",
-    title: "Flight Dynamics Simulation",
-    description:
-      "A planned numerical simulation exploring motion, forces, and the dynamics of aerospace vehicles.",
-    status: "Planned",
-    visual: "simulation",
-  },
-  {
-    number: "03",
-    slug: "propulsion-fundamentals",
-    category: "ENGINEERING · RESEARCH",
-    title: "Propulsion Fundamentals",
-    description:
-      "A technical study of propulsion principles, performance parameters, and rocket engine fundamentals.",
-    status: "In exploration",
-    visual: "propulsion",
-  },
-];
-
-function LogoMark({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        d="M32 5 56 49H8L32 5Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M32 19 44 42H20L32 19Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M32 29V53"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
 
 function ProjectVisual({ type }: { type: string }) {
   if (type === "orbit") {
     return (
-      <div className="relative flex min-h-52 items-center justify-center overflow-hidden bg-[#101a36]">
-        <div className="absolute h-52 w-52 rounded-full border border-indigo-300/20" />
-        <div className="absolute h-36 w-36 scale-x-150 rotate-[-28deg] rounded-full border border-indigo-300/30" />
-        <div className="absolute h-24 w-24 scale-x-150 rotate-45 rounded-full border border-cyan-300/30" />
-        <div className="absolute h-3 w-3 rounded-full bg-cyan-200 shadow-[0_0_24px_6px_rgba(103,232,249,0.45)]" />
-        <div className="absolute left-[63%] top-[29%] h-2 w-2 rounded-full bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.5)]" />
-        <span className="absolute bottom-4 left-5 text-[10px] tracking-[0.25em] text-slate-400">
+      <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#0a1424]">
+        <div className="absolute h-48 w-48 rounded-full border border-sky-300/20" />
+        <div className="absolute h-36 w-64 rotate-[-25deg] rounded-[50%] border border-sky-300/30" />
+        <div className="absolute h-28 w-56 rotate-[35deg] rounded-[50%] border border-blue-300/20" />
+        <div className="absolute h-20 w-20 rounded-full bg-blue-400/10 blur-xl" />
+        <div className="absolute h-2 w-2 rounded-full bg-sky-200 shadow-[0_0_20px_5px_rgba(125,211,252,0.5)]" />
+        <div className="absolute left-[68%] top-[28%] h-2 w-2 rounded-full bg-white" />
+        <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.25em] text-slate-400">
           ORBITAL MECHANICS
         </span>
       </div>
@@ -84,8 +22,8 @@ function ProjectVisual({ type }: { type: string }) {
 
   if (type === "simulation") {
     return (
-      <div className="relative flex min-h-52 items-center justify-center overflow-hidden bg-[#101a36]">
-        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(148,163,184,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,.2)_1px,transparent_1px)] [background-size:24px_24px]" />
+      <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#0a1424]">
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,.2)_1px,transparent_1px)] [background-size:28px_28px]" />
         <svg viewBox="0 0 320 180" className="relative w-full max-w-sm px-5">
           <path
             d="M20 145 Q85 130 130 90 T300 28"
@@ -97,13 +35,13 @@ function ProjectVisual({ type }: { type: string }) {
           <path
             d="M20 145 Q85 155 150 112 T300 78"
             fill="none"
-            stroke="#818cf8"
+            stroke="#93c5fd"
             strokeWidth="2"
           />
           <circle cx="130" cy="90" r="4" fill="#7dd3fc" />
-          <circle cx="150" cy="112" r="4" fill="#a5b4fc" />
+          <circle cx="150" cy="112" r="4" fill="#bfdbfe" />
         </svg>
-        <span className="absolute bottom-4 left-5 text-[10px] tracking-[0.25em] text-slate-400">
+        <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.25em] text-slate-400">
           DYNAMICS &amp; SIMULATION
         </span>
       </div>
@@ -111,25 +49,25 @@ function ProjectVisual({ type }: { type: string }) {
   }
 
   return (
-    <div className="relative flex min-h-52 items-center justify-center overflow-hidden bg-[#101a36]">
-      <div className="absolute h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl" />
-      <svg viewBox="0 0 320 180" className="relative h-40 w-full max-w-sm">
+    <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#0a1424]">
+      <div className="absolute h-40 w-40 rounded-full bg-sky-400/10 blur-3xl" />
+      <svg viewBox="0 0 320 180" className="relative h-44 w-full max-w-sm">
         <path
           d="M160 25 178 66 170 120 160 150 150 120 142 66 160 25Z"
-          fill="#27345f"
-          stroke="#9db5ff"
+          fill="#263c58"
+          stroke="#9dbfe0"
           strokeWidth="1.5"
         />
         <path
           d="M142 66 115 108 150 120"
-          fill="#1b2850"
-          stroke="#9db5ff"
+          fill="#1b2d46"
+          stroke="#9dbfe0"
           strokeWidth="1.5"
         />
         <path
           d="M178 66 205 108 170 120"
-          fill="#1b2850"
-          stroke="#9db5ff"
+          fill="#1b2d46"
+          stroke="#9dbfe0"
           strokeWidth="1.5"
         />
         <path
@@ -144,279 +82,429 @@ function ProjectVisual({ type }: { type: string }) {
           strokeLinecap="round"
         />
       </svg>
-      <span className="absolute bottom-4 left-5 text-[10px] tracking-[0.25em] text-slate-400">
+      <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.25em] text-slate-400">
         PROPULSION CONCEPT
       </span>
     </div>
   );
 }
 
+const primaryButton =
+  "inline-flex items-center justify-center gap-2 rounded-full border border-sky-300/50 bg-slate-950/40 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-sky-200 hover:bg-sky-300/10 hover:shadow-[0_0_24px_rgba(56,189,248,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300";
+
+const secondaryButton =
+  "inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-slate-950/30 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-white/60 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+
 export default function Home() {
+  const featuredProjects = projects
+    .filter((project) => project.featured)
+    .slice(0, 3);
+  const projectVisuals = ["orbit", "simulation", "default"] as const;
+
   return (
-    <main className="min-h-screen overflow-hidden">
+    <main className="min-h-screen overflow-hidden bg-[#080d16] text-white">
       <Navbar />
 
       {/* HERO */}
       <section
         id="home"
-        className="hero-glow relative flex min-h-[85vh] items-center overflow-hidden"
+        className="relative flex min-h-screen items-center overflow-hidden bg-[#070b12]"
       >
-        <div className="grid-overlay pointer-events-none absolute inset-0" />
-
-        <div
-          className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
           aria-hidden="true"
         >
-          <svg
-            viewBox="0 0 900 700"
-            className="h-full min-h-[600px] w-full min-w-[700px] max-w-[1100px] opacity-70"
-            fill="none"
-          >
-            <defs>
-              <radialGradient id="planetGlow">
-                <stop offset="0%" stopColor="#7188ff" stopOpacity=".28" />
-                <stop offset="100%" stopColor="#7188ff" stopOpacity="0" />
-              </radialGradient>
-              <linearGradient id="orbitLine" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#72d3ff" stopOpacity="0" />
-                <stop offset="50%" stopColor="#72d3ff" stopOpacity=".4" />
-                <stop offset="100%" stopColor="#7385ff" stopOpacity="0" />
-              </linearGradient>
-            </defs>
+          <source src="/videos/earth-orbit.mp4" type="video/mp4" />
+        </video>
 
-            <circle cx="450" cy="350" r="245" fill="url(#planetGlow)" />
-            <ellipse
-              cx="450"
-              cy="350"
-              rx="310"
-              ry="112"
-              stroke="url(#orbitLine)"
-              strokeWidth="1"
-              transform="rotate(-28 450 350)"
-            />
-            <ellipse
-              cx="450"
-              cy="350"
-              rx="235"
-              ry="160"
-              stroke="#8ca2ff"
-              strokeOpacity=".15"
-              strokeWidth="1"
-              transform="rotate(38 450 350)"
-            />
-            <ellipse
-              cx="450"
-              cy="350"
-              rx="355"
-              ry="215"
-              stroke="#8ca2ff"
-              strokeOpacity=".12"
-              strokeWidth="1"
-              transform="rotate(18 450 350)"
-              strokeDasharray="3 9"
-            />
-            <circle cx="450" cy="350" r="82" fill="#121b3b" fillOpacity=".7" />
-            <circle
-              cx="450"
-              cy="350"
-              r="82"
-              stroke="#9baeff"
-              strokeOpacity=".22"
-            />
-            <path
-              d="M415 363 450 288 485 363 450 346 415 363Z"
-              fill="#7385ff"
-              fillOpacity=".15"
-              stroke="#91a8ff"
-              strokeOpacity=".6"
-              strokeWidth="1.2"
-            />
-            <circle cx="238" cy="265" r="3" fill="#72d3ff" />
-            <circle cx="675" cy="420" r="3" fill="#9baeff" />
-            <circle cx="568" cy="180" r="2" fill="#72d3ff" />
-            <circle cx="310" cy="510" r="2" fill="#9baeff" />
-            <g stroke="#72d3ff" strokeOpacity=".7" strokeWidth="1.2">
-              <path d="M238 257v16M230 265h16" />
-              <path d="M675 412v16M667 420h16" />
-            </g>
-          </svg>
-        </div>
+        {/* Video overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070b12]/55 via-[#070b12]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070b12]/55 via-transparent to-[#070b12]/10" />
 
-        <div className="container relative z-10 py-24">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-8 flex justify-center">
-              <LogoMark className="h-16 w-16 text-indigo-300 drop-shadow-[0_0_22px_rgba(115,133,255,0.35)]" />
-            </div>
-
-            <p className="eyebrow mb-6">
-              AEROSPACE · SPACE SYSTEMS · ENGINEERING
+        <div className="container relative z-10 py-32">
+          <div className="max-w-5xl">
+            <p className="mb-7 text-xs font-medium tracking-[0.35em] text-sky-200">
+              EL AATAR ENGINEERING / SPACE &amp; AEROSPACE
             </p>
 
-            <h1 className="text-5xl font-semibold leading-[1.08] tracking-tight sm:text-7xl lg:text-8xl">
-              Engineering the
+            <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
+              Beyond the known.
               <br />
-              <span className="gradient-text">next frontier.</span>
+              <span className="text-sky-200">Into the possible.</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-              Exploring aerospace engineering through technical studies,
-              simulations, and a growing collection of engineering projects.
+            <p className="mt-8 max-w-xl text-base leading-8 text-slate-200 sm:text-lg">
+              Exploring aerospace engineering through curiosity,
+              technical studies, and a growing journey into
+              space systems.
             </p>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a
-                href="#projects"
-                className="rounded-full bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_35px_rgba(99,102,241,0.18)] transition duration-300 hover:-translate-y-0.5 hover:bg-indigo-400"
-              >
-                Explore projects <span aria-hidden="true">↗</span>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a href="#projects" className={primaryButton}>
+                Explore my work
+                <span aria-hidden="true">↘</span>
               </a>
-              <a
-                href="#about"
-                className="rounded-full border border-white/20 bg-white/[0.02] px-7 py-3.5 text-sm font-semibold text-slate-200 transition duration-300 hover:border-white/40 hover:bg-white/5"
-              >
-                About me
+            <Link
+            href="/atlas"
+            className={secondaryButton}
+>
+            Explore the cosmos
+            <span aria-hidden="true">↗</span>
+            </Link>
+              <a href="#about" className={secondaryButton}>
+                My journey
               </a>
-            </div>
-
-            <div className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[10px] tracking-[0.2em] text-slate-500">
-              <span>ENGINEERING</span>
-              <span className="text-indigo-300/70">✦</span>
-              <span>EXPLORATION</span>
-              <span className="text-indigo-300/70">✦</span>
-              <span>INNOVATION</span>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 text-[10px] tracking-[0.25em] text-slate-400 sm:flex">
+        <div className="absolute bottom-8 right-8 hidden text-[10px] tracking-[0.25em] text-white/70 sm:block">
+          EXPLORATION
+        </div>
+
+        <div className="absolute bottom-8 left-8 flex items-center gap-3 text-[10px] tracking-[0.25em] text-white/70">
+          <span className="h-8 w-px bg-sky-200/70" />
           SCROLL TO EXPLORE
-          <div className="h-10 w-px bg-gradient-to-b from-indigo-300/70 to-transparent" />
         </div>
       </section>
 
       {/* MISSION */}
-      <section id="mission" className="container py-28">
-        <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-start">
-          <div>
-            <p className="eyebrow mb-4">01 / THE MISSION</p>
-            <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
-              Curiosity,
-              <br />
-              built into engineering.
-            </h2>
+      
+      {/* MISSION */}
+      <section
+        id="mission"
+        className="relative isolate overflow-hidden border-y border-white/[0.06] bg-[#0a1422] py-28 sm:py-36"
+      >
+        {/* Ambient background */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-40 top-1/2 h-[32rem] w-[32rem] -translate-y-1/2 rounded-full bg-sky-400/[0.06] blur-[100px]"
+        />
+
+        <div className="container relative">
+          <div className="grid items-center gap-16 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
+            {/* Mission copy */}
+            <div className="relative z-10">
+              <div className="mb-8 flex items-center gap-4">
+                <span className="h-px w-10 bg-sky-300/70" />
+                <p className="text-xs font-medium tracking-[0.3em] text-sky-300">
+                  01 / OUR MISSION
+                </p>
+              </div>
+
+              <h2 className="max-w-2xl text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">
+                Engineering the future of flight.
+                <span className="mt-2 block text-sky-200">
+                  Exploring the boundaries of possibility.
+                </span>
+              </h2>
+
+              <p className="mt-9 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
+                At El Aatar Engineering, our mission is to explore the
+                science and engineering that make flight and space
+                exploration possible. Through research, simulation, and
+                engineering projects, we aim to turn curiosity into
+                understanding and ideas into meaningful technical
+                explorations.
+              </p>
+
+              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-slate-400">
+                  FLIGHT
+                </span>
+                <span className="h-1 w-1 rounded-full bg-sky-300/60" />
+                <span className="text-[10px] font-medium tracking-[0.2em] text-slate-400">
+                  ORBIT
+                </span>
+                <span className="h-1 w-1 rounded-full bg-sky-300/60" />
+                <span className="text-[10px] font-medium tracking-[0.2em] text-slate-400">
+                  PROPULSION
+                </span>
+              </div>
+            </div>
+
+            {/* Orbital visual */}
+            <div className="relative mx-auto aspect-square w-full max-w-[30rem]">
+              <div
+                aria-hidden="true"
+                className="absolute inset-[12%] rounded-full bg-sky-300/[0.07] blur-3xl"
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute inset-[9%] rounded-full border border-sky-200/[0.12]"
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute inset-[20%] rotate-[-32deg] rounded-[50%] border border-sky-300/25"
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute inset-[28%] rotate-[48deg] rounded-[50%] border border-blue-300/20"
+              />
+
+              {/* Planet */}
+              <div className="absolute left-1/2 top-1/2 h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-gradient-to-br from-[#6ca6c9] via-[#244b70] to-[#07101d] shadow-[0_0_70px_rgba(56,189,248,0.18)]">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_at_25%_25%,rgba(219,242,255,0.45),transparent_55%)]"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-[linear-gradient(120deg,transparent_35%,rgba(3,9,19,0.75)_100%)]"
+                />
+              </div>
+
+              {/* Orbital marker */}
+              <div
+                aria-hidden="true"
+                className="absolute left-[72%] top-[23%] h-2 w-2 rounded-full bg-sky-200 shadow-[0_0_16px_4px_rgba(125,211,252,0.5)]"
+              />
+
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] tracking-[0.25em] text-slate-500 sm:bottom-5">
+                EXPLORING WHAT'S NEXT
+              </div>
+
+              <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 text-[9px] tracking-[0.2em] text-slate-500 [writing-mode:vertical-rl] sm:block">
+                EA / 001
+              </div>
+            </div>
           </div>
-          <div className="max-w-2xl">
-            <p className="text-lg leading-8 text-slate-300">
-              Aerospace engineering is where mathematics, physics, and
-              creativity meet. This portfolio is a space to document that
-              process—from foundational learning and technical exploration
-              to simulations and practical engineering projects.
+
+          <div className="mt-20 flex items-center gap-4">
+            <span className="h-px flex-1 bg-white/[0.08]" />
+            <p className="text-center text-[10px] tracking-[0.25em] text-slate-500">
+              BEYOND THE KNOWN. INTO THE POSSIBLE.
             </p>
-            <p className="mt-5 leading-7 text-slate-500">
-              Every project will reflect its actual stage of development,
-              with an emphasis on transparent methods, technical learning,
-              and continuous improvement.
-            </p>
+            <span className="h-px flex-1 bg-white/[0.08]" />
           </div>
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <section
-        id="projects"
-        className="border-y border-white/[0.06] bg-[#0b1020] py-28"
-      >
-        <div className="container">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="eyebrow mb-4">02 / SELECTED WORK</p>
-              <h2 className="text-3xl font-semibold sm:text-4xl">
-                Projects &amp; explorations
-              </h2>
-              <p className="mt-4 max-w-xl leading-7 text-slate-400">
-                A growing collection of engineering work, studies, and
-                technical experiments.
-              </p>
-            </div>
-            <span className="text-xs tracking-widest text-slate-500">
-              PORTFOLIO / 2026
-            </span>
-          </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+      {/* PROJECTS — CINEMATIC SHOWCASE */}
+      <section id="projects" className="bg-[#080d16] text-white">
+        <div className="container pb-16 pt-28">
+          <p className="text-xs font-medium tracking-[0.3em] text-sky-300">
+            ENGINEERING EXPLORATIONS
+          </p>
+          <h2 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
+            Pushing the boundaries
+            <br />
+            of what is possible.
+          </h2>
+        </div>
+
+        <div className="space-y-5">
+          {featuredProjects.map((project, index) => {
+            return (
               <Link
-                key={project.number}
+                key={project.slug}
                 href={`/projects/${project.slug}`}
-                className="group block overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0e1427] transition duration-300 hover:-translate-y-1 hover:border-indigo-300/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-300"
+                className="group relative block min-h-[580px] overflow-hidden border-y border-white/[0.08] bg-[#0a1422] sm:min-h-[680px]"
               >
-                <ProjectVisual type={project.visual} />
-                <div className="p-6">
-                  <div className="mb-5 flex items-center justify-between gap-3">
-                    <span className="text-[10px] tracking-[0.16em] text-indigo-300">
+                {/* Visual background */}
+                <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-[1.025]">
+                  <ProjectVisual type={project.visual} />
+                </div>
+
+                {/* Contrast overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#050a12]/90 via-[#050a12]/50 to-[#050a12]/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050a12]/70 via-transparent to-[#050a12]/10" />
+
+                {/* Content */}
+                <div className="container relative z-10 flex min-h-[580px] flex-col justify-end py-16 sm:min-h-[680px] sm:justify-center">
+                  <div className="max-w-2xl">
+                    <p className="mb-5 text-xs tracking-[0.25em] text-sky-200">
                       {project.category}
-                    </span>
-                    <span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] text-slate-400">
-                      {project.status}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-medium text-white">
-                    {project.title}
-                  </h3>
-                  <p className="mt-3 min-h-20 text-sm leading-6 text-slate-400">
-                    {project.description}
-                  </p>
-                  <div className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-4 text-xs text-slate-500">
-                    <span>PROJECT {project.number}</span>
-                    <span className="transition group-hover:translate-x-1 group-hover:text-indigo-300">
-                      Explore ↗
-                    </span>
+                    </p>
+
+                    <h3 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
+                      {project.title}
+                    </h3>
+
+                    <p className="mt-6 max-w-lg text-base leading-7 text-slate-200 sm:text-lg">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-9 flex items-center gap-4">
+                      <span className="inline-flex items-center gap-3 border border-white/50 px-6 py-3 text-xs font-semibold tracking-wider transition-all duration-300 group-hover:border-sky-200 group-hover:bg-sky-200 group-hover:text-[#07101c]">
+                        EXPLORE PROJECT
+                        <span className="text-base" aria-hidden="true">
+                          ↗
+                        </span>
+                      </span>
+
+                      <span className="text-xs text-slate-300">
+                        {project.status}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
 
-          <p className="mt-6 text-xs leading-5 text-slate-500">
-            These are illustrative project entries. Update their descriptions
-            and statuses as your actual work develops.
-          </p>
+                {/* Corner marker */}
+                <div className="absolute right-8 top-8 hidden text-xs tracking-[0.2em] text-white/60 sm:block">
+                  EA / {String(index + 1).padStart(2, "0")}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* All projects link */}
+        <div className="container flex justify-center py-16">
+          <Link href="/projects" className={secondaryButton}>
+            Explore all projects
+            <span aria-hidden="true">↗</span>
+          </Link>
         </div>
       </section>
-          <SkillsSection />
-      <AboutSection />
+
+      {/* ABOUT */}
       <section id="about" className="container py-28">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div>
-            <p className="eyebrow mb-4">03 / ABOUT</p>
-            <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
+            <p className="mb-4 text-xs tracking-[0.25em] text-sky-300">
+              ABOUT
+            </p>
+            <h2 className="text-3xl font-semibold leading-tight sm:text-5xl">
               Learning by
               <br />
               building and exploring.
             </h2>
             <p className="mt-6 max-w-xl leading-8 text-slate-400">
-              This portfolio documents an ongoing engineering journey.
-              It will grow with each new technical study, experiment,
-              simulation, and completed project.
+              This portfolio documents an ongoing engineering
+              journey. It will grow with each new technical
+              study, experiment, simulation, and completed
+              project.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {[
-              ["01", "Aerospace engineering"],
-              ["02", "Space systems"],
-              ["03", "Numerical simulation"],
-              ["04", "Technical research"],
-            ].map(([number, label]) => (
+              {
+                label: "Aerospace engineering",
+                icon: "orbit",
+              },
+              {
+                label: "Space systems",
+                icon: "satellite",
+              },
+              {
+                label: "Numerical simulation",
+                icon: "simulation",
+              },
+              {
+                label: "Technical research",
+                icon: "research",
+              },
+            ].map((item) => (
               <div
-                key={number}
-                className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-5"
+                key={item.label}
+                className="group flex min-h-40 flex-col justify-between border border-white/[0.08] bg-[#0b111c] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sky-300/40 hover:bg-[#101b2a] hover:shadow-[0_0_25px_rgba(56,189,248,0.07)]"
               >
-                <span className="text-xs tracking-widest text-indigo-300">
-                  {number}
-                </span>
-                <p className="mt-8 text-sm font-medium text-slate-200">
-                  {label}
+                <div className="flex h-9 w-9 items-center justify-center text-sky-300 transition-transform duration-300 group-hover:scale-110">
+                  {item.icon === "orbit" && (
+                    <svg
+                      viewBox="0 0 32 32"
+                      className="h-8 w-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                    >
+                      <circle cx="16" cy="16" r="4" />
+                      <ellipse
+                        cx="16"
+                        cy="16"
+                        rx="14"
+                        ry="6"
+                        transform="rotate(-35 16 16)"
+                      />
+                      <circle
+                        cx="27"
+                        cy="9"
+                        r="1.5"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  )}
+
+                  {item.icon === "satellite" && (
+                    <svg
+                      viewBox="0 0 32 32"
+                      className="h-8 w-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinejoin="round"
+                    >
+                      <rect
+                        x="12"
+                        y="12"
+                        width="8"
+                        height="8"
+                        transform="rotate(45 16 16)"
+                      />
+                      <path d="m10 10-6-6m18 18 6 6M4 12l8-8M20 28l8-8" />
+                      <path d="M2 5h6v6H2zM24 21h6v6h-6z" />
+                    </svg>
+                  )}
+
+                  {item.icon === "simulation" && (
+                    <svg
+                      viewBox="0 0 32 32"
+                      className="h-8 w-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                    >
+                      <path d="M3 25h26M5 22l6-8 6 3 10-12" />
+                      <circle
+                        cx="11"
+                        cy="14"
+                        r="1.5"
+                        fill="currentColor"
+                      />
+                      <circle
+                        cx="17"
+                        cy="17"
+                        r="1.5"
+                        fill="currentColor"
+                      />
+                      <circle
+                        cx="27"
+                        cy="5"
+                        r="1.5"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  )}
+
+                  {item.icon === "research" && (
+                    <svg
+                      viewBox="0 0 32 32"
+                      className="h-8 w-8"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                    >
+                      <circle cx="14" cy="14" r="9" />
+                      <path d="m21 21 7 7M10 14h8M14 10v8" />
+                    </svg>
+                  )}
+                </div>
+
+                <p className="mt-8 text-sm font-medium leading-6 text-slate-200 transition-colors group-hover:text-white">
+                  {item.label}
                 </p>
               </div>
             ))}
@@ -425,51 +513,60 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      
-      <section id="contact" className="relative overflow-hidden py-24 md:py-32">
-        <div className="container mx-auto px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] px-7 py-16 text-center md:px-16 md:py-24">
-        <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[100px]" />
+      <section
+        id="contact"
+        className="relative overflow-hidden border-t border-white/[0.06] bg-[#0b111c] py-28"
+      >
+        <div className="container relative">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-4 text-xs tracking-[0.25em] text-sky-300">
+              GET IN TOUCH
+            </p>
 
-        <div className="relative mx-auto max-w-2xl">
-        <p className="eyebrow">Get in touch / 04</p>
+            <h2 className="text-4xl font-semibold leading-tight sm:text-6xl">
+              Let's talk
+              <br />
+              <span className="text-sky-200">engineering.</span>
+            </h2>
 
-        <h2 className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl">
-          Let's build something <span className="gradient-text">remarkable.</span>
-        </h2>
+            <p className="mx-auto mt-6 max-w-xl leading-7 text-slate-400">
+              Interested in aerospace, space systems,
+              engineering projects, or technical collaboration?
+              Feel free to get in touch.
+            </p>
 
-        <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-400">
-          Interested in aerospace engineering, technical collaboration,
-          or exchanging ideas? Feel free to reach out.
-        </p>
+            <a
+              href="mailto:your.email@example.com"
+              className={`${primaryButton} mt-9`}
+            >
+              Contact me
+              <span aria-hidden="true">↗</span>
+            </a>
 
-        <a
-          href="mailto:your.email@example.com"
-          className="mt-10 inline-flex items-center gap-3 rounded-full bg-blue-500 px-7 py-4 text-sm font-medium text-white transition hover:bg-blue-400"
-        >
-          Contact me
-          <span aria-hidden="true">↗</span>
-              </a>
+            <p className="mt-4 text-xs text-slate-500">
+              mr.el.aatar.1@gmail.com
+              <br />
+              <br />
+              +212 764-878193
+            </p>
           </div>
-          </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer className="border-t border-white/[0.08]">
         <div className="container flex flex-col justify-between gap-6 py-8 sm:flex-row sm:items-center">
           <a href="#home" className="flex items-center gap-3">
-            <LogoMark className="h-8 w-8 text-indigo-300" />
-            <span className="text-sm font-semibold tracking-wide text-slate-200">
-              EA{" "}
-              <span className="font-normal text-slate-500">
-                / Engineering
+            <span className="text-sm font-semibold tracking-[0.15em] text-slate-200">
+              EA
+              <span className="ml-2 font-normal text-slate-500">
+                / ENGINEERING
               </span>
             </span>
           </a>
 
           <p className="text-xs text-slate-500">
-            Built with curiosity. Developed through engineering.
+            Beyond the known. Into the possible.
           </p>
 
           <a

@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const links = [
   { label: "Mission", href: "#mission" },
@@ -28,31 +29,14 @@ export default function Navbar() {
           className="flex min-w-0 items-center gap-3"
           aria-label="El Aatar Engineering home"
         >
-          <svg
-            viewBox="0 0 48 48"
-            className="h-9 w-9 shrink-0"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M23 3 3 39h17c5 0 8-2 11-7l9-16L23 3Z"
-              fill="url(#nav-gradient)"
-            />
-            <path d="m34 25-8 14h19L34 25Z" fill="#79CFFF" />
-            <defs>
-              <linearGradient
-                id="nav-gradient"
-                x1="9"
-                y1="36"
-                x2="37"
-                y2="5"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#70D5FF" />
-                <stop offset="1" stopColor="#7283FF" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <Image
+            src="/ea-space-logo.png"
+            alt="El Aatar Engineering logo"
+            width={44}
+            height={44}
+            priority
+            className="h-11 w-11 shrink-0 object-contain"
+          />
 
           <span className="truncate text-xs font-semibold tracking-[0.12em] sm:text-sm sm:tracking-[0.19em]">
             EL AATAR{" "}
