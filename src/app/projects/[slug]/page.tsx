@@ -1,235 +1,175 @@
-
-"use client";
-
-import { useMemo, useState } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import { projects } from "@/data/projects";
 
-export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+type ProjectPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
-  const categories = useMemo(
-    () => ["All", ...Array.from(new Set(projects.map((p) => p.category)))],
-    []
-  );
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
 
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
+export default async function ProjectPage({
+  params,
+}: ProjectPageProps) {
+  const { slug } = await params;
+
+  const project = projects.find((item) => item.slug === slug);
+
+  if (!project) {
+    notFound();
+  }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#080d16] text-white">
+    <main className="min-h-screen bg-[#050816] text-white">
       <Navbar />
 
-      {/* INTRO */}
-      <section className="relative overflow-hidden border-b border-white/[0.08] bg-[#070b12]">
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-sky-400/[0.06] blur-3xl" />
-        <div className="container relative py-32 sm:py-40">
-          <p className="mb-6 text-xs tracking-[0.35em] text-sky-300">
-            EL AATAR ENGINEERING / PROJECT ARCHIVE
-          </p>
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-white/[0.08]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(59,130,246,0.16),transparent_35%),radial-gradient(circle_at_20%_80%,rgba(99,102,241,0.10),transparent_35%)]" />
 
-          <h1 className="max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
-            Engineering
-            <br />
-            <span className="text-sky-200">explorations.</span>
-          </h1>
+        <div className="container relative mx-auto px-6 py-24 sm:py-32 lg:py-40">
+          <Link
+            href="/projects"
+            className="inline-flex items-center text-xs tracking-[0.18em] text-slate-500 transition hover:text-white"
+          >
+            ← BACK TO PROJECTS
+          </Link>
 
-          <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <p className="max-w-xl text-base leading-8 text-slate-400 sm:text-lg">
-              A growing collection of aerospace studies,
-              simulations, research, and engineering projects.
-              Each exploration documents a step forward.
+          <div className="mt-12">
+            <p className="text-xs font-medium tracking-[0.28em] text-blue-300">
+              VORA / PROJECT
             </p>
 
-            <p className="text-xs tracking-[0.2em] text-slate-500">
-              {projects.length.toString().padStart(2, "0")} PROJECTS
+            <h1 className="mt-6 max-w-5xl text-5xl font-semibold tracking-[-0.04em] sm:text-6xl lg:text-8xl">
+              {project.title}
+            </h1>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <span className="rounded-full border border-white/10 px-4 py-2 text-xs tracking-[0.12em] text-slate-300">
+                {project.category}
+              </span>
+
+              <span className="rounded-full border border-blue-300/20 bg-blue-300/5 px-4 py-2 text-xs tracking-[0.12em] text-blue-200">
+                {project.status.toUpperCase()}
+              </span>
+            </div>
+
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-400 sm:text-xl">
+              {project.description}
             </p>
           </div>
         </div>
       </section>
 
-      {/* PROJECT LIBRARY */}
-      <section className="container py-20 sm:py-28">
-        <div className="mb-10 flex flex-col gap-6 border-b border-white/[0.08] pb-8 sm:flex-row sm:items-center sm:justify-between">
+      {/* PROJECT OVERVIEW */}
+      <section className="border-b border-white/[0.08]">
+        <div className="container mx-auto grid gap-14 px-6 py-24 lg:grid-cols-[0.7fr_1.3fr] lg:py-32">
           <div>
-            <p className="text-xs tracking-[0.3em] text-sky-300">
-              THE COLLECTION
+            <p className="text-xs font-medium tracking-[0.25em] text-blue-300">
+              PROJECT / OVERVIEW
             </p>
-            <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
-              Project library
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+              Project overview
             </h2>
-          </div>
 
-          <p className="text-sm text-slate-500">
-            Showing {filteredProjects.length} of {projects.length}
-          </p>
-        </div>
-
-        {/* FILTERS */}
-        <div className="mb-12 flex flex-wrap gap-2">
-          {categories.map((category) => {
-            const isActive = activeCategory === category;
-
-            return (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setActiveCategory(category)}
-                className={`rounded-full border px-4 py-2 text-xs tracking-wide transition ${
-                  isActive
-                    ? "border-sky-300 bg-sky-300/10 text-sky-200"
-                    : "border-white/10 text-slate-400 hover:border-white/30 hover:text-white"
-                }`}
-              >
-                {category === "All" ? "All projects" : category}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* GRID */}
-        {filteredProjects.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {filteredProjects.map((project, index) => (
-              <Link
-                key={project.slug}
-                href={`/projects/${project.slug}`}
-                className="group flex flex-col overflow-hidden border border-white/[0.08] bg-[#0b111c] transition duration-500 hover:-translate-y-1 hover:border-sky-300/30 hover:shadow-[0_15px_50px_rgba(0,0,0,0.25)]"
-              >
-                {/* VISUAL */}
-                <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[#0a1424]">
-                  <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,.15)_1px,transparent_1px)] [background-size:28px_28px]" />
-
-                  {project.visual === "orbit" && (
-                    <div className="relative flex h-full w-full items-center justify-center transition-transform duration-700 group-hover:scale-110">
-                      <div className="absolute h-40 w-40 rounded-full border border-sky-300/20" />
-                      <div className="absolute h-24 w-56 rotate-[-25deg] rounded-[50%] border border-sky-300/40" />
-                      <div className="absolute h-20 w-48 rotate-[35deg] rounded-[50%] border border-blue-300/30" />
-                      <div className="h-16 w-16 rounded-full bg-sky-400/10 blur-xl" />
-                      <div className="absolute h-2 w-2 rounded-full bg-sky-200 shadow-[0_0_18px_5px_rgba(125,211,252,0.4)]" />
-                    </div>
-                  )}
-
-                  {project.visual === "simulation" && (
-                    <svg
-                      viewBox="0 0 320 180"
-                      className="relative w-full max-w-sm px-5 transition-transform duration-700 group-hover:scale-110"
-                    >
-                      <path
-                        d="M20 145 Q85 130 130 90 T300 28"
-                        fill="none"
-                        stroke="#7dd3fc"
-                        strokeWidth="2"
-                        strokeDasharray="5 5"
-                      />
-                      <path
-                        d="M20 145 Q85 155 150 112 T300 78"
-                        fill="none"
-                        stroke="#93c5fd"
-                        strokeWidth="2"
-                      />
-                      <circle cx="130" cy="90" r="4" fill="#7dd3fc" />
-                      <circle cx="150" cy="112" r="4" fill="#bfdbfe" />
-                    </svg>
-                  )}
-
-                  {project.visual === "propulsion" && (
-                    <svg
-                      viewBox="0 0 320 180"
-                      className="relative h-40 w-full max-w-sm transition-transform duration-700 group-hover:scale-110"
-                    >
-                      <path
-                        d="M160 25 178 66 170 120 160 150 150 120 142 66 160 25Z"
-                        fill="#263c58"
-                        stroke="#9dbfe0"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M142 66 115 108 150 120"
-                        fill="#1b2d46"
-                        stroke="#9dbfe0"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M178 66 205 108 170 120"
-                        fill="#1b2d46"
-                        stroke="#9dbfe0"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M154 120 160 150 166 120"
-                        fill="#67e8f9"
-                        opacity=".8"
-                      />
-                    </svg>
-                  )}
-
-                  <span className="absolute left-5 top-5 text-[10px] tracking-[0.2em] text-white/40">
-                    EA / {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <span className="absolute bottom-5 right-5 text-xs text-sky-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    VIEW PROJECT ↗
-                  </span>
-                </div>
-
-                {/* CONTENT */}
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="text-[10px] tracking-[0.2em] text-sky-300">
-                    {project.category}
-                  </p>
-
-                  <h3 className="mt-4 text-xl font-semibold leading-snug transition-colors group-hover:text-sky-100">
-                    {project.title}
-                  </h3>
-
-                  <p className="mt-3 flex-1 text-sm leading-7 text-slate-400">
-                    {project.description}
-                  </p>
-
-                  <div className="mt-7 flex items-center justify-between border-t border-white/[0.08] pt-5">
-                    <span className="text-[10px] tracking-wider text-slate-500">
-                      {project.status.toUpperCase()}
-                    </span>
-
-                    <span className="text-sm text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-sky-200">
-                      ↗
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="border border-white/[0.08] py-20 text-center">
-            <p className="text-slate-400">
-              No projects in this category yet.
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400">
+              {project.description}
             </p>
+
+            <div className="mt-12 grid gap-8 sm:grid-cols-2">
+              <div className="border-t border-white/[0.08] pt-5">
+                <p className="text-xs tracking-[0.18em] text-slate-600">
+                  CATEGORY
+                </p>
+
+                <p className="mt-3 text-base text-slate-200">
+                  {project.category}
+                </p>
+              </div>
+
+              <div className="border-t border-white/[0.08] pt-5">
+                <p className="text-xs tracking-[0.18em] text-slate-600">
+                  STATUS
+                </p>
+
+                <p className="mt-3 text-base text-slate-200">
+                  {project.status}
+                </p>
+              </div>
+            </div>
           </div>
-        )}
+        </div>
       </section>
 
-      {/* FOOTER CTA */}
-      <section className="border-t border-white/[0.08] bg-[#0b111c]">
-        <div className="container flex flex-col gap-6 py-12 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-lg font-medium">
-              Beyond the known. Into the possible.
+      {/* DOCUMENTATION PLACEHOLDER */}
+      <section className="border-b border-white/[0.08]">
+        <div className="container mx-auto px-6 py-24 sm:py-32">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-medium tracking-[0.25em] text-blue-300">
+              TECHNICAL RECORD
             </p>
-            <p className="mt-2 text-sm text-slate-500">
-              Every project is another step into exploration.
+
+            <h2 className="mt-6 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+              Documentation will grow with the project.
+            </h2>
+
+            <p className="mt-6 text-base leading-8 text-slate-400">
+              Detailed objectives, methodology, simulations, experiments,
+              results, technical notes, and development history can be added
+              here as this project develops.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* PROJECT STATUS */}
+      <section className="border-b border-white/[0.08]">
+        <div className="container mx-auto px-6 py-20">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs tracking-[0.2em] text-slate-600">
+                CURRENT STATUS
+              </p>
+
+              <p className="mt-3 text-2xl font-medium">
+                {project.status}
+              </p>
+            </div>
+
+            <div className="max-w-md text-sm leading-7 text-slate-500">
+              This status reflects the current state recorded in the VORA
+              project archive and can be updated as development progresses.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NAVIGATION */}
+      <section>
+        <div className="container mx-auto flex flex-col gap-6 px-6 py-16 sm:flex-row sm:items-center sm:justify-between">
+          <Link
+            href="/projects"
+            className="inline-flex items-center text-sm text-slate-400 transition hover:text-white"
+          >
+            ← All projects
+          </Link>
 
           <Link
-            href="/"
-            className="inline-flex items-center gap-3 text-sm text-slate-300 transition hover:text-sky-200"
+            href="/research"
+            className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm transition hover:border-blue-300 hover:bg-white/5"
           >
-            Back to home
-            <span aria-hidden="true">↗</span>
+            Explore research
+            <span className="ml-2">↗</span>
           </Link>
         </div>
       </section>
