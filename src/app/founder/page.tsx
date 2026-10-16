@@ -1,5 +1,7 @@
+
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
+import Image from "next/image";
 
 export default function FounderPage() {
   return (
@@ -30,7 +32,7 @@ export default function FounderPage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/#mission"
-                className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-medium text-slate-950 transition hover:bg-blue-100"
+                className="inline-flex items-center rounded-full bg-blue-500 px-6 py-3 text-sm font-medium text-white transition hover:bg-blue-400"
               >
                 Explore VORA
                 <span className="ml-2">↗</span>
@@ -50,26 +52,17 @@ export default function FounderPage() {
       {/* PROFILE */}
       <section className="border-b border-white/[0.08]">
         <div className="container mx-auto grid gap-16 px-6 py-24 lg:grid-cols-[0.8fr_1.2fr] lg:py-32">
-          {/* PORTRAIT PLACEHOLDER */}
+          {/* FOUNDER PORTRAIT */}
           <div>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/[0.10] bg-[#0b1020]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(59,130,246,0.18),transparent_38%)]" />
-
-              <div className="relative flex h-full items-center justify-center">
-                <div className="text-center">
-                  <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full border border-blue-300/20 bg-blue-300/5 text-2xl text-blue-200">
-                    ME
-                  </div>
-
-                  <p className="text-xs tracking-[0.25em] text-slate-500">
-                    FOUNDER PORTRAIT
-                  </p>
-
-                  <p className="mt-2 text-sm text-slate-600">
-                    Portrait to be added
-                  </p>
-                </div>
-              </div>
+              <Image
+                src="/images/founder.jpg"
+                alt="Mohamed El Aatar, founder of VORA"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center"
+              />
             </div>
           </div>
 

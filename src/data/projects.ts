@@ -12,6 +12,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "vora-airfoil-engineering-suite",
+    title: "VORA Airfoil Engineering Suite v1.0",
+    category: "Aerodynamics & Simulation",
+    description:
+      "A Python-based desktop application for exploring airfoil aerodynamic performance through lift and drag calculations, aerodynamic plots, and airfoil comparisons. Developed as an engineering software project under VORA.",
+    status: "Completed",
+    featured: true,
+    cover: "/projects/vora-airfoil-suite.png",
+    visual: "simulation",
+  },
+  {
     slug: "orbital-systems-study",
     title: "Orbital Systems Study",
     category: "Orbital Mechanics",
