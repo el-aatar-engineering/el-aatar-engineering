@@ -179,7 +179,7 @@ export default function Navbar() {
           aria-label="VORA home"
         >
           <Image
-            src="/vora-logo-dark.png"
+            src="/vora-logo.png"
             alt="VORA — Voyage & Orbital Research Agency"
             width={170}
             height={52}
