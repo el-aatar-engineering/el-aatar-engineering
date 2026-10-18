@@ -78,30 +78,104 @@ export default function AtlasPage() {
     <main className="min-h-screen overflow-hidden bg-[#080d16] text-white">
       <Navbar />
 
+      
       {/* HERO */}
-      <section className="relative border-b border-white/[0.08] bg-[#070b12]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_75%_20%,rgba(56,130,190,.15),transparent_45%)]" />
+      <section className="relative isolate overflow-hidden border-b border-white/[0.08] bg-[#060b13]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_40%,rgba(56,130,190,.18),transparent_42%),radial-gradient(ellipse_at_20%_100%,rgba(56,189,248,.06),transparent_40%)]"
+        />
 
-        <div className="container relative py-28 sm:py-36">
-          <p className="mb-6 text-xs tracking-[0.3em] text-sky-300">
-            VORA / COSMIC ATLAS
-          </p>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(125,211,252,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,.15)_1px,transparent_1px)] [background-size:60px_60px] [mask-image:linear-gradient(to_bottom,black,transparent)]"
+        />
 
-          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
-            The Cosmic
-            <br />
-            <span className="text-sky-200">Atlas.</span>
-          </h1>
+        <div className="container relative grid min-h-[560px] items-center gap-10 py-24 sm:py-28 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="relative z-10">
+            <div className="mb-7 flex items-center gap-3">
+              <span className="h-px w-8 bg-sky-300" />
+              <p className="text-[10px] tracking-[0.3em] text-sky-300">
+                VORA / COSMIC ATLAS
+              </p>
+            </div>
 
-          <p className="mt-8 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-            A visual journey through planets, galaxies, nebulae, stars, and
-            the remarkable objects that shape our universe.
-          </p>
+            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl">
+              A universe
+              <br />
+              <span className="text-sky-200">to investigate.</span>
+            </h1>
+
+            <p className="mt-7 max-w-xl text-sm leading-8 text-slate-400 sm:text-base">
+              Explore the celestial objects, planetary systems, and
+              cosmic structures that help us understand the universe
+              and our place within it.
+            </p>
+
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <a
+                href="#atlas-database"
+                className="inline-flex items-center gap-3 border border-sky-200/40 bg-sky-200/[0.08] px-5 py-3 text-xs text-sky-100 transition hover:border-sky-200/70 hover:bg-sky-200/[0.14]"
+              >
+                Explore the database
+                <span aria-hidden="true">↓</span>
+              </a>
+
+              <span className="text-[10px] tracking-[0.15em] text-slate-600">
+                PLANETS / STARS / GALAXIES
+              </span>
+            </div>
+          </div>
+
+          {/* FEATURED COSMIC VISUAL */}
+          <div className="relative mx-auto w-full max-w-[460px]">
+            <div className="absolute inset-0 scale-75 rounded-full bg-sky-400/[0.08] blur-3xl" />
+
+            <div className="relative aspect-square">
+              <div className="absolute inset-[8%] rounded-full border border-sky-200/[0.12]" />
+              <div className="absolute inset-[17%] rotate-[-25deg] rounded-full border border-sky-200/[0.2]" />
+              <div className="absolute inset-[26%] rounded-full border border-white/[0.08]" />
+
+              <div className="absolute inset-[22%] rounded-full bg-[radial-gradient(circle_at_30%_28%,#b6e7ff_0%,#4389ad_18%,#17476d_48%,#081524_76%)] shadow-[0_0_70px_rgba(56,189,248,0.18)]">
+                <div className="absolute inset-0 overflow-hidden rounded-full">
+                  <div className="absolute left-[-15%] top-[28%] h-[18%] w-[130%] rotate-[-24deg] rounded-[50%] bg-sky-100/[0.12] blur-md" />
+                  <div className="absolute left-[-10%] top-[55%] h-[12%] w-[120%] rotate-[18deg] rounded-[50%] bg-blue-200/[0.12] blur-sm" />
+                  <div className="absolute inset-0 rounded-full bg-[linear-gradient(110deg,transparent_25%,rgba(0,0,0,.45)_85%)]" />
+                </div>
+              </div>
+
+              <div className="absolute left-[17%] top-[25%] h-2 w-2 rounded-full bg-sky-200 shadow-[0_0_16px_rgba(125,211,252,.8)]" />
+              <div className="absolute bottom-[21%] right-[17%] h-1.5 w-1.5 rounded-full bg-white/80" />
+
+              <div className="absolute left-0 top-[20%] border-l border-sky-300/40 pl-3">
+                <p className="text-[9px] tracking-[0.2em] text-slate-500">
+                  OBSERVATION
+                </p>
+                <p className="mt-1 text-[10px] text-slate-300">
+                  Planetary systems
+                </p>
+              </div>
+
+              <div className="absolute bottom-[13%] right-0 border-r border-sky-300/40 pr-3 text-right">
+                <p className="text-[9px] tracking-[0.2em] text-slate-500">
+                  DOMAIN
+                </p>
+                <p className="mt-1 text-[10px] text-slate-300">
+                  Cosmic exploration
+                </p>
+              </div>
+
+              <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] tracking-[0.25em] text-slate-600">
+                VORA / CELESTIAL REFERENCE
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
+
       {/* DATABASE */}
-      <section className="container py-16 sm:py-20">
+      <section id="atlas-database" className="container py-16 sm:py-20">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>

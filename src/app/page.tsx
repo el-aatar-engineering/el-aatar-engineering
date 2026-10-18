@@ -4,6 +4,12 @@ import Navbar from "@/components/layout/Navbar";
 import HeroVideo from "@/components/HeroVideo";
 import { projects } from "@/data/projects";
 import ContactForm from "@/components/ContactForm";
+import EngineeringWireframe from "@/components/EngineeringWireframe";
+import MissionVisualization from "@/components/MissionVisualization";
+import GalaxyVisual from "@/components/GalaxyVisual";
+
+
+
 
 const primaryButton =
   "inline-flex items-center justify-center gap-2 rounded-full border border-sky-300/50 bg-slate-950/40 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-sky-200 hover:bg-sky-300/10 hover:shadow-[0_0_24px_rgba(56,189,248,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300";
@@ -272,7 +278,7 @@ export default function Home() {
               engineering, experimentation, and documentation.
             </p>
           </div>
-
+          <EngineeringWireframe />
           {/* PROCESS */}
           <div className="relative mt-20">
 
@@ -495,48 +501,10 @@ export default function Home() {
               </Link>
             </div>
 
+            
             {/* MISSION PIPELINE */}
             <div className="relative">
-              <div className="border border-white/[0.08] bg-[#0a111b] p-8 sm:p-10">
-
-                <p className="text-[10px] tracking-[0.3em] text-slate-500">
-                  MISSION DEVELOPMENT
-                </p>
-
-                <div className="mt-10 space-y-0">
-
-                  {[
-                    ["01", "CONCEPT"],
-                    ["02", "DESIGN"],
-                    ["03", "SIMULATION"],
-                    ["04", "TEST"],
-                    ["05", "MISSION"],
-                  ].map(([number, label], index) => (
-                    <div
-                      key={label}
-                      className="relative flex items-center gap-6"
-                    >
-                      {index < 4 && (
-                        <span
-                          aria-hidden="true"
-                          className="absolute left-[13px] top-8 h-12 w-px bg-sky-300/20"
-                        />
-                      )}
-
-                      <div className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-sky-300/30 bg-[#080d16] text-[9px] text-sky-200">
-                        {number}
-                      </div>
-
-                      <div className="py-5">
-                        <p className="text-sm font-medium tracking-[0.2em] text-slate-200">
-                          {label}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-
-                </div>
-              </div>
+              <MissionVisualization />
             </div>
 
           </div>
@@ -649,117 +617,210 @@ export default function Home() {
         </div>
       </section>
 
+      
       {/* =========================================================
-          ABOUT
+          ABOUT VORA
       ========================================================= */}
       <section
         id="about"
         className="container py-28 sm:py-36"
       >
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+        <div className="grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
 
-          {/* TEXT */}
+          {/* ABOUT TEXT */}
           <div>
-            <p className="mb-4 text-xs tracking-[0.25em] text-sky-300">
-              ABOUT VORA
-            </p>
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-8 bg-sky-300" />
+              <p className="text-[10px] tracking-[0.3em] text-sky-300">
+                ABOUT THE AGENCY
+              </p>
+            </div>
 
-            <h2 className="text-3xl font-semibold leading-tight sm:text-5xl">
-              Learning by
+            <h2 className="max-w-2xl text-4xl font-semibold leading-[1.12] tracking-tight sm:text-6xl">
+              Engineering the
               <br />
-              building and exploring.
+              <span className="text-slate-500">
+                next frontier.
+              </span>
             </h2>
 
-            <p className="mt-6 max-w-xl leading-8 text-slate-400">
-              VORA is an evolving aerospace research and engineering
-              initiative focused on learning through technical studies,
-              experiments, simulations, and exploration.
+            <p className="mt-8 max-w-xl text-base leading-8 text-slate-300">
+              VORA — Voyage &amp; Orbital Research Agency — is an
+              emerging aerospace research and engineering initiative
+              built around a simple principle: meaningful progress
+              begins with curiosity, rigorous study, and practical work.
             </p>
 
             <p className="mt-5 max-w-xl text-sm leading-7 text-slate-500">
-              The organization is intentionally being built step by step:
-              establish the research foundation, document the work, develop
-              technical capability, and grow toward increasingly ambitious
-              aerospace systems.
+              From aerospace fundamentals and numerical simulations
+              to space systems research, VORA is developing its
+              foundation one project at a time. Each study is an
+              opportunity to test ideas, document findings, and
+              build technical capability for more ambitious work ahead.
             </p>
+
+            <div className="mt-9 flex items-center gap-4 border-t border-white/[0.08] pt-6">
+              <span className="text-[10px] tracking-[0.2em] text-sky-300">
+                OUR PRINCIPLE
+              </span>
+              <span className="h-px flex-1 bg-white/[0.08]" />
+              <span className="text-xs text-slate-300">
+                Research. Build. Learn.
+              </span>
+            </div>
           </div>
 
-          {/* AREAS */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* RESEARCH DOMAINS */}
+          <div className="relative">
+            <div className="absolute -inset-5 bg-sky-400/[0.03] blur-2xl" />
 
-            {[
-              {
-                label: "Aerospace engineering",
-                symbol: "◉",
-              },
-              {
-                label: "Space systems",
-                symbol: "◇",
-              },
-              {
-                label: "Numerical simulation",
-                symbol: "∑",
-              },
-              {
-                label: "Technical research",
-                symbol: "+",
-              },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="group flex min-h-40 flex-col justify-between border border-white/[0.08] bg-[#0b111c] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sky-300/40 hover:bg-[#101b2a] hover:shadow-[0_0_25px_rgba(56,189,248,0.07)]"
-              >
-                <div className="flex h-9 w-9 items-center justify-center border border-sky-300/20 text-lg text-sky-300 transition-transform duration-300 group-hover:scale-110">
-                  {item.symbol}
-                </div>
+            <div className="relative border border-white/[0.09] bg-[#080e18]">
 
-                <p className="mt-8 text-sm font-medium leading-6 text-slate-200 transition-colors group-hover:text-white">
-                  {item.label}
+              <div className="flex items-center justify-between border-b border-white/[0.08] px-5 py-4 sm:px-7">
+                <p className="text-[10px] tracking-[0.25em] text-slate-400">
+                  RESEARCH DOMAINS
                 </p>
+                <span className="text-[9px] tracking-[0.15em] text-slate-600">
+                  VORA / 001
+                </span>
               </div>
-            ))}
 
+              {[
+                {
+                  number: "01",
+                  symbol: "◉",
+                  title: "AEROSPACE ENGINEERING",
+                  description:
+                    "Aircraft fundamentals, aerodynamics, and engineering principles.",
+                },
+                {
+                  number: "02",
+                  symbol: "⌘",
+                  title: "SPACE SYSTEMS",
+                  description:
+                    "Orbital concepts, spacecraft architecture, and mission studies.",
+                },
+                {
+                  number: "03",
+                  symbol: "∑",
+                  title: "COMPUTATIONAL RESEARCH",
+                  description:
+                    "Numerical methods, modelling, simulation, and data analysis.",
+                },
+                {
+                  number: "04",
+                  symbol: "⌁",
+                  title: "TECHNICAL DEVELOPMENT",
+                  description:
+                    "Practical projects, structured testing, and documented results.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.number}
+                  className="group grid grid-cols-[36px_1fr] gap-4 border-b border-white/[0.07] px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-sky-300/[0.04] sm:grid-cols-[42px_1fr] sm:gap-5 sm:px-7"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center border border-sky-300/20 text-base text-sky-300 transition-all duration-300 group-hover:border-sky-300/60 group-hover:bg-sky-300/[0.08]">
+                    {item.symbol}
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-[9px] tracking-widest text-sky-300/60">
+                        {item.number}
+                      </span>
+                      <h3 className="text-[10px] font-medium tracking-[0.14em] text-slate-200 transition-colors group-hover:text-white sm:text-xs">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <p className="mt-3 max-w-sm text-xs leading-6 text-slate-500 transition-colors group-hover:text-slate-400">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+              <div className="flex items-center justify-between border-t border-white/[0.08] px-5 py-3 sm:px-7">
+                <span className="text-[9px] tracking-widest text-slate-600">
+                  FOUNDATIONS IN DEVELOPMENT
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-300/70" />
+              </div>
+
+            </div>
           </div>
+
         </div>
       </section>
 
+
+     
       {/* =========================================================
           COSMIC ATLAS CTA
       ========================================================= */}
-      <section className="border-y border-white/[0.06] bg-[#060b13] py-24">
-        <div className="container">
+      <section className="relative isolate overflow-hidden border-y border-white/[0.08] bg-[#060b13] py-24 sm:py-32">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_50%,rgba(56,130,190,.13),transparent_42%)]"
+        />
 
-          <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(125,211,252,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,.12)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:linear-gradient(to_right,transparent,black)]"
+        />
 
-            <div>
-              <p className="text-xs tracking-[0.3em] text-sky-300">
-                VORA / COSMIC ATLAS
-              </p>
+        <div className="container relative">
+          <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.8fr] lg:gap-8">
 
-              <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            {/* TEXT */}
+            <div className="relative z-10">
+              <div className="mb-6 flex items-center gap-3">
+                <span className="h-px w-8 bg-sky-300" />
+                <p className="text-[10px] tracking-[0.3em] text-sky-300">
+                  VORA / COSMIC ATLAS
+                </p>
+              </div>
+
+              <h2 className="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
                 Study the universe.
-                <span className="block text-sky-200">
+                <span className="mt-2 block text-sky-200">
                   Object by object.
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-2xl leading-8 text-slate-400">
-                A growing visual database of planets, stars, galaxies,
-                nebulae, and other objects across the cosmos.
+              <p className="mt-7 max-w-xl text-sm leading-8 text-slate-400 sm:text-base">
+                Explore a growing visual reference to planets, stars,
+                galaxies, nebulae, and the structures that shape our
+                understanding of the cosmos.
               </p>
+
+              <div className="mt-9 flex flex-wrap items-center gap-5">
+                <Link
+                  href="/atlas"
+                  className={`${primaryButton} group`}
+                >
+                  Open Cosmic Atlas
+                  <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                    ↗
+                  </span>
+                </Link>
+
+                <span className="text-[10px] tracking-[0.15em] text-slate-600">
+                  EXPLORE / OBSERVE / UNDERSTAND
+                </span>
+              </div>
             </div>
 
-            <Link
-              href="/atlas"
-              className={primaryButton}
-            >
-              Open Cosmic Atlas
-              <span aria-hidden="true">↗</span>
-            </Link>
+            
+            {/* GALAXY VISUAL */}
+            <div className="relative mx-auto w-full max-w-[560px]">
+              <GalaxyVisual />
+            </div>
 
           </div>
         </div>
       </section>
+
 
       {/* =========================================================
           DOCUMENTATION CTA

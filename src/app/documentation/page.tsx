@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import DocumentationGraph from "@/components/DocumentationGraph";
+
 const records = [
   {
     id: "VORA-001",
@@ -77,62 +79,139 @@ const archiveAreas = [
 export default function DocumentationPage() {
   return (
     <main className="min-h-screen bg-[#070b12] text-white">
+      
       {/* HEADER */}
-      <section className="relative overflow-hidden border-b border-white/[0.08] bg-[#080d16]">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.08] bg-[#060b13]">
         <div
           aria-hidden="true"
-          className="absolute -right-40 top-0 h-[32rem] w-[32rem] rounded-full bg-sky-400/[0.05] blur-[120px]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(56,130,190,.16),transparent_42%)]"
         />
 
         <div
           aria-hidden="true"
-          className="absolute left-1/3 top-1/2 h-px w-[40rem] rotate-[-18deg] bg-sky-300/[0.08]"
+          className="pointer-events-none absolute inset-0 opacity-[0.11] [background-image:linear-gradient(rgba(125,211,252,.14)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,.14)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent)]"
         />
 
-        <div className="container relative py-28 sm:py-36">
+        <div className="container relative py-24 sm:py-32 lg:py-36">
           <Link
             href="/"
-            className="mb-10 inline-flex items-center gap-3 text-xs tracking-[0.2em] text-slate-500 transition-colors hover:text-sky-200"
+            className="mb-12 inline-flex items-center gap-3 text-xs tracking-[0.2em] text-slate-500 transition-colors hover:text-sky-200"
           >
-            <span>←</span>
-            VORA
+            <span aria-hidden="true">←</span>
+            VORA / HOME
           </Link>
 
-          <p className="text-xs font-medium tracking-[0.35em] text-sky-300">
-            VORA / TECHNICAL ARCHIVE
-          </p>
+          <div className="grid items-end gap-12 lg:grid-cols-[1fr_280px]">
+            <div>
+              <div className="mb-6 flex items-center gap-3">
+                <span className="h-px w-8 bg-sky-300" />
+                <p className="text-[10px] tracking-[0.3em] text-sky-300">
+                  VORA / TECHNICAL ARCHIVE
+                </p>
+              </div>
 
-          <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
-            Documentation
-            <br />
-            <span className="text-sky-200">is part of the mission.</span>
-          </h1>
+              <h1 className="max-w-5xl text-5xl font-semibold leading-[1.04] tracking-tight sm:text-7xl lg:text-8xl">
+                Every detail.
+                <br />
+                <span className="text-sky-200">
+                  Documented.
+                </span>
+              </h1>
 
-          <p className="mt-8 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
-            A growing technical archive documenting VORA&apos;s development,
-            research, engineering projects, simulations, experiments, and
-            lessons learned.
-          </p>
+              <p className="mt-8 max-w-2xl text-sm leading-8 text-slate-400 sm:text-base">
+                A structured record of VORA&apos;s development, engineering
+                projects, research, and lessons learned—preserving the
+                process behind the work, not just the outcome.
+              </p>
 
-          <div className="mt-12 flex flex-wrap gap-3 text-[10px] tracking-[0.2em] text-slate-500">
-            <span className="border border-white/[0.08] px-4 py-2">
-              TECHNICAL RECORDS
-            </span>
+              <div className="mt-10 flex flex-wrap gap-3">
+                {["ENGINEERING", "RESEARCH", "PROJECT RECORDS"].map((item) => (
+                  <span
+                    key={item}
+                    className="border border-white/[0.09] bg-white/[0.02] px-4 py-2 text-[9px] tracking-[0.18em] text-slate-400"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-            <span className="border border-white/[0.08] px-4 py-2">
-              ENGINEERING
-            </span>
+            {/* ARCHIVE INDEX */}
+            <div className="relative border border-white/[0.1] bg-[#080e18]/90 p-6 sm:p-7">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+                <p className="text-[9px] tracking-[0.22em] text-sky-300">
+                  ARCHIVE INDEX
+                </p>
+                <span className="text-[9px] text-slate-600">
+                  V / 001
+                </span>
+              </div>
 
-            <span className="border border-white/[0.08] px-4 py-2">
-              RESEARCH
-            </span>
+              <div className="space-y-5 py-6">
+                {[
+                  ["01", "Foundation"],
+                  ["02", "Development"],
+                  ["03", "Exploration"],
+                  ["04", "Engineering"],
+                ].map(([number, label]) => (
+                  <div
+                    key={number}
+                    className="flex items-center gap-4"
+                  >
+                    <span className="text-[10px] tracking-widest text-sky-300/70">
+                      {number}
+                    </span>
+                    <span className="h-px flex-1 bg-white/[0.08]" />
+                    <span className="text-xs text-slate-300">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
-            <span className="border border-white/[0.08] px-4 py-2">
-              EXPLORATION
-            </span>
+              <div className="border-t border-white/[0.08] pt-4">
+                <p className="text-[9px] leading-5 tracking-[0.12em] text-slate-600">
+                  STRUCTURED RECORDS
+                  <br />
+                  UPDATED AS WORK DEVELOPS
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+      
+      
+      
+      {/* ENGINEERING DATA VISUALIZATION */}
+      <section className="border-b border-white/[0.06] bg-[#080d16]">
+        <div className="container py-16 sm:py-20">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
+            <div>
+              <p className="text-[10px] tracking-[0.3em] text-sky-300">
+                VORA / DATA ANALYSIS
+              </p>
+
+              <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
+                Every result
+                <br />
+                <span className="text-slate-500">
+                  starts with a question.
+                </span>
+              </h2>
+
+              <p className="mt-5 max-w-md text-sm leading-7 text-slate-400">
+                Engineering depends on careful analysis, clear records,
+                and transparent assumptions. VORA&apos;s archive is being
+                developed to preserve that process as its work grows.
+              </p>
+            </div>
+
+            <DocumentationGraph />
+          </div>
+        </div>
+      </section>
+
 
       {/* ARCHIVE AREAS */}
       <section className="border-b border-white/[0.06] bg-[#0a101a]">
