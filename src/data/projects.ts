@@ -19,7 +19,7 @@ export const projects: Project[] = [
       "A Python-based desktop application for exploring airfoil aerodynamic performance through lift and drag calculations, aerodynamic plots, and airfoil comparisons. Developed as an engineering software project under VORA.",
     status: "Completed",
     featured: true,
-    cover: "/projects/vora-airfoil-suite.png",
+    cover: "/projects/vora-airfoil-suite.jpg",
     visual: "simulation",
   },
   {

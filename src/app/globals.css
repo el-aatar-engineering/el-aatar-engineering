@@ -466,3 +466,28 @@ a {
     transform: rotate(360deg);
   }
 }
+
+
+.galaxy-background {
+  transform: scale(1.18);
+  transform-origin: center;
+  animation: galaxy-drift 180s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes galaxy-drift {
+  0% {
+    transform: scale(1.18) rotate(-2deg);
+  }
+
+  100% {
+    transform: scale(1.28) rotate(2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-background {
+    animation: none;
+    transform: scale(1.18);
+  }
+}

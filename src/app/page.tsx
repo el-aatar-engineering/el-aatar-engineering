@@ -1,8 +1,9 @@
 import Link from "next/link";
-
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import HeroVideo from "@/components/HeroVideo";
 import { projects } from "@/data/projects";
+import ContactForm from "@/components/ContactForm";
 
 const primaryButton =
   "inline-flex items-center justify-center gap-2 rounded-full border border-sky-300/50 bg-slate-950/40 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-sky-200 hover:bg-sky-300/10 hover:shadow-[0_0_24px_rgba(56,189,248,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300";
@@ -14,111 +15,27 @@ const secondaryButton =
    PROJECT VISUALS
 ========================================================= */
 
-function ProjectVisual({ type }: { type: string }) {
-  if (type === "orbit") {
-    return (
-      <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#0a1424]">
-        <div className="absolute h-48 w-48 rounded-full border border-sky-300/20" />
 
-        <div className="absolute h-36 w-64 rotate-[-25deg] rounded-[50%] border border-sky-300/30" />
-
-        <div className="absolute h-28 w-56 rotate-[35deg] rounded-[50%] border border-blue-300/20" />
-
-        <div className="absolute h-20 w-20 rounded-full bg-blue-400/10 blur-xl" />
-
-        <div className="absolute h-2 w-2 rounded-full bg-sky-200 shadow-[0_0_20px_5px_rgba(125,211,252,0.5)]" />
-
-        <div className="absolute left-[68%] top-[28%] h-2 w-2 rounded-full bg-white" />
-
-        <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.25em] text-slate-400">
-          ORBITAL MECHANICS
-        </span>
-      </div>
-    );
-  }
-
-  if (type === "simulation") {
-    return (
-      <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#0a1424]">
-        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,.2)_1px,transparent_1px)] [background-size:28px_28px]" />
-
-        <svg
-          viewBox="0 0 320 180"
-          className="relative w-full max-w-sm px-5"
-        >
-          <path
-            d="M20 145 Q85 130 130 90 T300 28"
-            fill="none"
-            stroke="#7dd3fc"
-            strokeWidth="2"
-            strokeDasharray="5 5"
-          />
-
-          <path
-            d="M20 145 Q85 155 150 112 T300 78"
-            fill="none"
-            stroke="#93c5fd"
-            strokeWidth="2"
-          />
-
-          <circle cx="130" cy="90" r="4" fill="#7dd3fc" />
-
-          <circle cx="150" cy="112" r="4" fill="#bfdbfe" />
-        </svg>
-
-        <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.25em] text-slate-400">
-          DYNAMICS &amp; SIMULATION
-        </span>
-      </div>
-    );
-  }
-
+function ProjectVisual({
+  src,
+  title,
+}: {
+  src: string;
+  title: string;
+}) {
   return (
-    <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#0a1424]">
-      <div className="absolute h-40 w-40 rounded-full bg-sky-400/10 blur-3xl" />
+    <div className="relative min-h-64 h-full w-full overflow-hidden bg-[#0a1424]">
+      <Image
+        src={src}
+        alt={title}
+        fill
+        sizes="100vw"
+        className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+      />
 
-      <svg
-        viewBox="0 0 320 180"
-        className="relative h-44 w-full max-w-sm"
-      >
-        <path
-          d="M160 25 178 66 170 120 160 150 150 120 142 66 160 25Z"
-          fill="#263c58"
-          stroke="#9dbfe0"
-          strokeWidth="1.5"
-        />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050a12]/70 via-[#050a12]/25 to-transparent" />
 
-        <path
-          d="M142 66 115 108 150 120"
-          fill="#1b2d46"
-          stroke="#9dbfe0"
-          strokeWidth="1.5"
-        />
-
-        <path
-          d="M178 66 205 108 170 120"
-          fill="#1b2d46"
-          stroke="#9dbfe0"
-          strokeWidth="1.5"
-        />
-
-        <path
-          d="M154 120 160 150 166 120"
-          fill="#67e8f9"
-          opacity=".8"
-        />
-
-        <path
-          d="M156 151 160 169 164 151"
-          stroke="#67e8f9"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </svg>
-
-      <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.25em] text-slate-400">
-        PROPULSION CONCEPT
-      </span>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050a12]/65 via-transparent to-[#050a12]/10" />
     </div>
   );
 }
@@ -662,7 +579,10 @@ export default function Home() {
 
               {/* VISUAL */}
               <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-[1.025]">
-                <ProjectVisual type={project.visual} />
+               <ProjectVisual
+                  src={project.cover}
+                  title={project.title}
+                />
               </div>
 
               {/* OVERLAYS */}
@@ -883,55 +803,37 @@ export default function Home() {
       {/* =========================================================
           CONTACT
       ========================================================= */}
-      <section
-        id="contact"
-        className="relative overflow-hidden border-t border-white/[0.06] bg-[#0b111c] py-28"
-      >
-        <div className="container relative">
+      
+          <section
+            id="contact"
+            className="relative overflow-hidden border-t border-white/[0.06] bg-[#0b111c] py-28"
+          >
+            <div className="container relative">
+              <div className="mx-auto max-w-3xl text-center">
+                <p className="mb-4 text-xs tracking-[0.25em] text-sky-300">
+                  GET IN TOUCH
+                </p>
 
-          <div className="mx-auto max-w-3xl text-center">
+                <h2 className="text-4xl font-semibold leading-tight sm:text-6xl">
+                  Let&apos;s talk
+                  <br />
+                  <span className="text-sky-200">engineering.</span>
+                </h2>
 
-            <p className="mb-4 text-xs tracking-[0.25em] text-sky-300">
-              GET IN TOUCH
-            </p>
+                <p className="mx-auto mt-6 max-w-xl leading-7 text-slate-400">
+                  Interested in aerospace, space systems, engineering projects,
+                  research, or technical collaboration? Send VORA an inquiry.
+                </p>
 
-            <h2 className="text-4xl font-semibold leading-tight sm:text-6xl">
-              Let&apos;s talk
-              <br />
-              <span className="text-sky-200">
-                engineering.
-              </span>
-            </h2>
+                <ContactForm />
 
-            <p className="mx-auto mt-6 max-w-xl leading-7 text-slate-400">
-              Interested in aerospace, space systems, engineering projects,
-              research, or technical collaboration?
-            </p>
-
-            <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/projects"
-                className={primaryButton}
-              >
-                Explore VORA
-                <span aria-hidden="true">↗</span>
-              </Link>
-
-              <Link
-                href="/documentation"
-                className={secondaryButton}
-              >
-                View documentation
-              </Link>
+                <p className="mt-8 text-xs tracking-[0.2em] text-slate-600">
+                  VORA / VOYAGE &amp; ORBITAL RESEARCH AGENCY
+                </p>
+              </div>
             </div>
+          </section>
 
-            <p className="mt-8 text-xs tracking-[0.2em] text-slate-600">
-              VORA / VOYAGE &amp; ORBITAL RESEARCH AGENCY
-            </p>
-
-          </div>
-        </div>
-      </section>
 
       {/* =========================================================
           FOOTER
