@@ -32,6 +32,20 @@ const AIRFOILS = {
 
 type AirfoilName = keyof typeof AIRFOILS;
 
+type SimulationResult =
+  | { valid: false; error: string }
+  | {
+      valid: true;
+      q: number;
+      cl: number;
+      cd: number;
+      lift: number;
+      drag: number;
+      ld: number | null;
+      stallAngle: number;
+      aboveStallAngle: boolean;
+    };
+
 const inputClass =
   "mt-2 w-full rounded-xl border border-white/10 bg-[#080d20] px-4 py-3 text-sm text-white outline-none transition focus:border-blue-400";
 
@@ -67,7 +81,7 @@ export default function AirfoilSimulator() {
   const [angle, setAngle] = useState("5");
   const [submitted, setSubmitted] = useState(false);
 
-  const result = useMemo(() => {
+  const result = useMemo<SimulationResult>(() => {
     const v = Number(velocity);
     const area = Number(wingArea);
     const rho = Number(density);
@@ -88,7 +102,11 @@ export default function AirfoilSimulator() {
       alpha < 0 ||
       alpha > 90
     ) {
-      return { error: "Enter valid values. Velocity, wing area, and density must be positive. Angle of attack must be between 0° and 90°." } as const;
+      return {
+        valid: false,
+        error:
+          "Enter valid values. Velocity, wing area, and density must be positive. Angle of attack must be between 0° and 90°.",
+      };
     }
 
     const model = AIRFOILS[airfoil];
@@ -101,7 +119,7 @@ export default function AirfoilSimulator() {
     const ld = drag !== 0 ? lift / drag : null;
 
     return {
-      error: null,
+      valid: true,
       q,
       cl,
       cd,
@@ -110,7 +128,7 @@ export default function AirfoilSimulator() {
       ld,
       stallAngle: model.stallAngle,
       aboveStallAngle: alpha > model.stallAngle,
-    } as const;
+    };
   }, [airfoil, velocity, wingArea, density, angle]);
 
   function calculate() {
@@ -124,9 +142,11 @@ export default function AirfoilSimulator() {
           <p className="text-xs font-medium tracking-[0.25em] text-blue-300">
             VORA / INTERACTIVE TOOL
           </p>
+
           <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-5xl">
             Airfoil Simulator
           </h2>
+
           <p className="mt-5 leading-8 text-slate-400">
             Explore how airspeed, wing area, air density, angle of attack,
             and airfoil selection affect the estimates produced by our
@@ -135,8 +155,10 @@ export default function AirfoilSimulator() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          {/* FLIGHT CONDITIONS */}
           <div className={cardClass}>
             <h3 className="text-lg font-medium">Flight conditions</h3>
+
             <p className="mt-2 text-sm leading-6 text-slate-500">
               Set your parameters and calculate the predicted values.
             </p>
@@ -218,29 +240,45 @@ export default function AirfoilSimulator() {
             </div>
           </div>
 
+          {/* SIMULATION OUTPUT */}
           <div>
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
                 <p className="text-xs tracking-[0.2em] text-slate-500">
                   SIMULATION OUTPUT
                 </p>
+
                 <h3 className="mt-2 text-2xl font-semibold">
                   Predicted results
                 </h3>
               </div>
+
               <span className="rounded-full border border-blue-300/20 bg-blue-300/5 px-3 py-2 text-xs text-blue-200">
                 {airfoil}
               </span>
             </div>
 
-            {submitted && result.error ? (
+            {!submitted ? (
+              <div className="mt-6 flex min-h-72 items-center justify-center rounded-2xl border border-dashed border-white/15 p-8 text-center">
+                <div>
+                  <p className="text-lg font-medium text-slate-200">
+                    Ready to calculate
+                  </p>
+
+                  <p className="mt-3 max-w-sm text-sm leading-7 text-slate-500">
+                    Choose an airfoil, adjust the flight conditions, and
+                    calculate to display the aerodynamic estimates here.
+                  </p>
+                </div>
+              </div>
+            ) : !result.valid ? (
               <div
                 role="alert"
                 className="mt-6 rounded-xl border border-red-400/30 bg-red-400/5 p-5 text-sm leading-7 text-red-200"
               >
                 {result.error}
               </div>
-            ) : submitted ? (
+            ) : (
               <>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <ResultCard
@@ -250,16 +288,19 @@ export default function AirfoilSimulator() {
                     })}
                     unit="Pa"
                   />
+
                   <ResultCard
                     label="Lift coefficient (CL)"
                     value={result.cl.toFixed(4)}
                     unit="Dimensionless"
                   />
+
                   <ResultCard
                     label="Drag coefficient (CD)"
                     value={result.cd.toFixed(4)}
                     unit="Dimensionless"
                   />
+
                   <ResultCard
                     label="Lift force"
                     value={result.lift.toLocaleString("en-US", {
@@ -267,6 +308,7 @@ export default function AirfoilSimulator() {
                     })}
                     unit="N"
                   />
+
                   <ResultCard
                     label="Drag force"
                     value={result.drag.toLocaleString("en-US", {
@@ -274,9 +316,14 @@ export default function AirfoilSimulator() {
                     })}
                     unit="N"
                   />
+
                   <ResultCard
                     label="Lift-to-drag ratio"
-                    value={result.ld === null ? "N/A" : result.ld.toFixed(3)}
+                    value={
+                      result.ld === null
+                        ? "N/A"
+                        : result.ld.toFixed(3)
+                    }
                     unit="L / D"
                   />
                 </div>
@@ -290,18 +337,6 @@ export default function AirfoilSimulator() {
                   </div>
                 )}
               </>
-            ) : (
-              <div className="mt-6 flex min-h-72 items-center justify-center rounded-2xl border border-dashed border-white/15 p-8 text-center">
-                <div>
-                  <p className="text-lg font-medium text-slate-200">
-                    Ready to calculate
-                  </p>
-                  <p className="mt-3 max-w-sm text-sm leading-7 text-slate-500">
-                    Choose an airfoil, adjust the flight conditions, and
-                    calculate to display the aerodynamic estimates here.
-                  </p>
-                </div>
-              </div>
             )}
 
             <p className="mt-6 text-xs leading-6 text-slate-500">
