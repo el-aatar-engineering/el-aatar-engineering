@@ -293,6 +293,56 @@ export default function ResearchPage() {
           </div>
         </div>
       </section>
+    
+{/* PUBLISHED RESEARCH */}
+<section
+  id="publications"
+  className="border-b border-white/[0.08]"
+>
+  <div className="container mx-auto px-6 py-20 sm:py-28">
+    <p className="text-[10px] tracking-[0.28em] text-sky-300">
+      03 / RESEARCH ARCHIVE
+    </p>
+
+    <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
+      Research records.
+    </h2>
+
+    <p className="mt-4 max-w-xl text-sm leading-7 text-slate-400">
+      Computational studies, documented methods, and reproducible technical work.
+    </p>
+
+    <article className="mt-10 border border-white/[0.09] bg-[#080d18] p-6 sm:p-9">
+      <p className="text-[10px] tracking-[0.2em] text-sky-300">
+        VORA-RES-001 / ORBITAL MECHANICS
+      </p>
+
+      <h3 className="mt-5 max-w-3xl text-2xl font-semibold sm:text-3xl">
+        How Does Orbital Altitude Affect Circular Orbital Speed and Period?
+      </h3>
+
+      <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+        A computational study examining how orbital altitude affects
+        circular orbital speed and orbital period using a simplified
+        Newtonian two-body model.
+      </p>
+
+      <p className="mt-4 text-xs text-slate-500">
+        Initial computational study — pending final review.
+      </p>
+
+      <div className="mt-7">
+        <Link
+          href="/research/vora-res-001"
+          className="inline-flex items-center rounded-full bg-sky-300 px-5 py-3 text-sm font-medium text-[#06101d] transition hover:bg-sky-200"
+        >
+          Read the study
+          <span className="ml-2">↗</span>
+        </Link>
+      </div>
+    </article>
+  </div>
+</section>
 
       {/* METHODOLOGY */}
       <section id="methodology" className="scroll-mt-24 border-b border-white/[0.08] bg-[#070b15]">

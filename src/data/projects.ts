@@ -28,7 +28,7 @@ export const projects: Project[] = [
     category: "Orbital Mechanics",
     description:
       "An exploration of orbital mechanics, mission parameters, and the fundamentals of designing a space mission.",
-    status: "Planned",
+    status: "Completed",
     featured: true,
     cover: "/projects/orbital-systems.jpg",
     visual: "orbit",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     category: "Flight Dynamics",
     description:
       "A numerical simulation exploring motion, forces, and the dynamics of aerospace vehicles.",
-    status: "Planned",
+    status: "Completed",
     featured: true,
     cover: "/projects/flight-dynamics.jpg",
     visual: "simulation",
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     category: "Propulsion",
     description:
       "A technical study of propulsion principles, performance parameters, and rocket engine fundamentals.",
-    status: "In exploration",
+    status: "Completed",
     featured: false,
     cover: "/projects/propulsion.jpg",
     visual: "default",
