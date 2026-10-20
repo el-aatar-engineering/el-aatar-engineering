@@ -138,7 +138,7 @@ export default function ProjectsPage() {
                         className="inline-flex items-center rounded-full border border-sky-400/30 bg-[#111e30] px-5 py-2.5 text-sm font-medium text-sky-100 transition hover:border-sky-300/60 hover:bg-sky-400/15"
                       >
                         View project
-                        <span className="ml-2">↗</span>
+                        <span className="ml-2"></span>
                       </Link>
 
                       <span className="text-xs tracking-[0.12em] text-slate-400">
@@ -190,7 +190,7 @@ export default function ProjectsPage() {
               className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm transition hover:border-blue-300 hover:bg-white/5"
             >
               Research
-              <span className="ml-2">↗</span>
+              <span className="ml-2"></span>
             </Link>
           </div>
         </div>

@@ -211,7 +211,7 @@ export default function Navbar() {
           className="ml-4 hidden items-center rounded-full border border-blue-300/25 bg-blue-400/[0.04] px-5 py-2.5 text-xs text-slate-200 transition-all duration-200 hover:border-blue-300/50 hover:bg-blue-400/[0.1] hover:text-white sm:inline-flex"
         >
           Get in touch
-          <span className="ml-2 text-blue-200">↗</span>
+          <span className="ml-2 text-blue-200"></span>
         </a>
 
         {/* MOBILE MENU BUTTON */}
@@ -281,7 +281,7 @@ export default function Navbar() {
               className="mt-3 inline-flex w-fit items-center gap-2 rounded-full border border-blue-300/30 bg-blue-400/[0.05] px-5 py-2.5 text-xs text-blue-100 transition hover:border-blue-300/50 hover:bg-blue-400/[0.1]"
             >
               Get in touch
-              <span>↗</span>
+              <span></span>
             </a>
           </div>
         </div>

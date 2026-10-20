@@ -337,7 +337,7 @@ export default function ResearchPage() {
           className="inline-flex items-center rounded-full bg-sky-300 px-5 py-3 text-sm font-medium text-[#06101d] transition hover:bg-sky-200"
         >
           Read the study
-          <span className="ml-2">↗</span>
+          <span className="ml-2"></span>
         </Link>
       </div>
     </article>
@@ -452,7 +452,7 @@ export default function ResearchPage() {
               className="inline-flex shrink-0 items-center rounded-full border border-white/20 px-6 py-3 text-sm transition hover:border-sky-300/60 hover:bg-white/[0.04]"
             >
               Explore projects
-              <span className="ml-3">↗</span>
+              <span className="ml-3"></span>
             </Link>
           </div>
         </div>

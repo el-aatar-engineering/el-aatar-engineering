@@ -12,7 +12,7 @@ import OrbitalVisual from "@/components/OrbitalVisual";
 import FlightDynamicsCalculator from "@/components/FlightDynamicsCalculator";
 import FlightDynamicsVisual from "@/components/FlightDynamicsVisual";
 import AirfoilProjectDetails from "@/components/AirfoilProjectDetails";
-
+import AerodyneMissionDetails from "@/components/AerodyneMissionDetails";
 
 
 type ProjectPageProps = {
@@ -39,13 +39,15 @@ const isOrbitalProject =
   project.slug === "orbital-systems-study";
 const isFlightDynamicsProject =
   project.slug === "flight-dynamics-simulation";
-
+const isAerodyneProject =
+  project.slug === "aerodyne-mission-001";
 
 if (
   !isAirfoilProject &&
   !isPropulsionProject &&
   !isOrbitalProject &&
-  !isFlightDynamicsProject
+  !isFlightDynamicsProject &&
+  !isAerodyneProject
 ) {
 
     return (
@@ -74,7 +76,14 @@ if (
       </main>
     );
   }
-
+if (isAerodyneProject) {
+  return (
+    <main className="min-h-screen bg-[#050816] text-white">
+      <Navbar />
+      <AerodyneMissionDetails />
+    </main>
+  );
+}
 if (isOrbitalProject) {
   return (
     <main className="min-h-screen bg-[#050816] text-white">
@@ -299,7 +308,7 @@ if (isOrbitalProject) {
             href="/research"
             className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm transition hover:border-blue-300 hover:bg-white/5"
           >
-            Explore research <span className="ml-2">↗</span>
+            Explore research <span className="ml-2"></span>
           </Link>
         </div>
       </section>
@@ -539,7 +548,7 @@ if (isFlightDynamicsProject) {
             href="/research"
             className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm transition hover:border-blue-300 hover:bg-white/5"
           >
-            Explore research <span className="ml-2">↗</span>
+            Explore research <span className="ml-2"></span>
           </Link>
         </div>
       </section>
@@ -870,7 +879,7 @@ if (isFlightDynamicsProject) {
               href="/research"
               className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm transition hover:border-blue-300 hover:bg-white/5"
             >
-              Explore research <span className="ml-2">↗</span>
+              Explore research <span className="ml-2"></span>
             </Link>
           </div>
         </section>

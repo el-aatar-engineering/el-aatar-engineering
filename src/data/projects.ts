@@ -55,4 +55,16 @@ export const projects: Project[] = [
     cover: "/projects/propulsion.jpg",
     visual: "default",
   },
+  
+  {
+    slug: "aerodyne-mission-001",
+    title: "AERODYNE — Mission 001",
+    category: "Flight Dynamics & Trajectory Simulation",
+    description:
+      "A computational rocketry study developing a configurable 3D point-mass trajectory simulator with thrust, gravity, atmospheric density, aerodynamic drag, and propellant mass variation. The simulation is under development and has not been validated for flight use.",
+    status: "In progress",
+    featured: true,
+    cover: "/projects/aerodyne-mission-001.jpg",
+    visual: "simulation",
+  },
 ];

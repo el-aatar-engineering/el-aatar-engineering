@@ -146,7 +146,7 @@ export default async function AtlasObjectPage({
             className="inline-flex w-fit items-center gap-3 rounded-full border border-sky-300/50 px-6 py-3 text-sm text-white transition hover:bg-sky-300/10"
           >
             Browse all objects
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true"></span>
           </Link>
         </div>
       </section>

@@ -132,7 +132,7 @@ export default function ContactForm() {
         disabled={loading}
         className="w-full rounded-full bg-sky-400 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-sky-300 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {loading ? "Sending..." : "Send inquiry ↗"}
+        {loading ? "Sending..." : "Send inquiry"}
       </button>
 
       {status === "success" && (

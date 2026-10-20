@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import { atlasCategories, cosmicObjects } from "@/data/atlas";
+import AtlasGlobe from "@/components/AtlasGlobe";
+
 
 const visualStyles: Record<string, string> = {
   earth:
@@ -73,12 +75,58 @@ export default function AtlasPage() {
       return matchesCategory && matchesSearch;
     });
   }, [category, search]);
+const [globeRotation, setGlobeRotation] = useState({
+  x: -18,
+  y: 24,
+});
 
+const dragRef = useRef<{
+  x: number;
+  y: number;
+  rotationX: number;
+  rotationY: number;
+} | null>(null);
+
+function handleGlobePointerDown(
+  event: React.PointerEvent<HTMLDivElement>
+) {
+  dragRef.current = {
+    x: event.clientX,
+    y: event.clientY,
+    rotationX: globeRotation.x,
+    rotationY: globeRotation.y,
+  };
+
+  event.currentTarget.setPointerCapture(event.pointerId);
+}
+
+function handleGlobePointerMove(
+  event: React.PointerEvent<HTMLDivElement>
+) {
+  if (!dragRef.current) return;
+
+  setGlobeRotation({
+    x: Math.max(
+      -65,
+      Math.min(
+        65,
+        dragRef.current.rotationX +
+          (event.clientY - dragRef.current.y) * 0.45
+      )
+    ),
+    y:
+      dragRef.current.rotationY +
+      (event.clientX - dragRef.current.x) * 0.45,
+  });
+}
+
+function handleGlobePointerUp() {
+  dragRef.current = null;
+}
   return (
     <main className="min-h-screen overflow-hidden bg-[#080d16] text-white">
       <Navbar />
-
-      
+    
       {/* HERO */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.08] bg-[#060b13]">
         <div
@@ -127,49 +175,34 @@ export default function AtlasPage() {
             </div>
           </div>
 
-          {/* FEATURED COSMIC VISUAL */}
-          <div className="relative mx-auto w-full max-w-[460px]">
-            <div className="absolute inset-0 scale-75 rounded-full bg-sky-400/[0.08] blur-3xl" />
+                    {/* FEATURED 3D COSMIC VISUAL */}
+<div className="relative mx-auto w-full max-w-[460px]">
+  <div className="absolute inset-[10%] rounded-full bg-sky-400/10 blur-3xl" />
 
-            <div className="relative aspect-square">
-              <div className="absolute inset-[8%] rounded-full border border-sky-200/[0.12]" />
-              <div className="absolute inset-[17%] rotate-[-25deg] rounded-full border border-sky-200/[0.2]" />
-              <div className="absolute inset-[26%] rounded-full border border-white/[0.08]" />
+  <AtlasGlobe />
 
-              <div className="absolute inset-[22%] rounded-full bg-[radial-gradient(circle_at_30%_28%,#b6e7ff_0%,#4389ad_18%,#17476d_48%,#081524_76%)] shadow-[0_0_70px_rgba(56,189,248,0.18)]">
-                <div className="absolute inset-0 overflow-hidden rounded-full">
-                  <div className="absolute left-[-15%] top-[28%] h-[18%] w-[130%] rotate-[-24deg] rounded-[50%] bg-sky-100/[0.12] blur-md" />
-                  <div className="absolute left-[-10%] top-[55%] h-[12%] w-[120%] rotate-[18deg] rounded-[50%] bg-blue-200/[0.12] blur-sm" />
-                  <div className="absolute inset-0 rounded-full bg-[linear-gradient(110deg,transparent_25%,rgba(0,0,0,.45)_85%)]" />
-                </div>
-              </div>
+  <div className="pointer-events-none absolute left-0 top-[22%] border-l border-sky-300/50 pl-3">
+    <p className="text-[9px] tracking-[0.2em] text-slate-500">
+      OBSERVATION
+    </p>
+    <p className="mt-1 text-[10px] text-slate-200">
+      Planetary systems
+    </p>
+  </div>
 
-              <div className="absolute left-[17%] top-[25%] h-2 w-2 rounded-full bg-sky-200 shadow-[0_0_16px_rgba(125,211,252,.8)]" />
-              <div className="absolute bottom-[21%] right-[17%] h-1.5 w-1.5 rounded-full bg-white/80" />
+  <div className="pointer-events-none absolute bottom-[17%] right-0 border-r border-sky-300/50 pr-3 text-right">
+    <p className="text-[9px] tracking-[0.2em] text-slate-500">
+      REFERENCE BODY
+    </p>
+    <p className="mt-1 text-[10px] text-slate-200">
+      Earth / Sol III
+    </p>
+  </div>
 
-              <div className="absolute left-0 top-[20%] border-l border-sky-300/40 pl-3">
-                <p className="text-[9px] tracking-[0.2em] text-slate-500">
-                  OBSERVATION
-                </p>
-                <p className="mt-1 text-[10px] text-slate-300">
-                  Planetary systems
-                </p>
-              </div>
-
-              <div className="absolute bottom-[13%] right-0 border-r border-sky-300/40 pr-3 text-right">
-                <p className="text-[9px] tracking-[0.2em] text-slate-500">
-                  DOMAIN
-                </p>
-                <p className="mt-1 text-[10px] text-slate-300">
-                  Cosmic exploration
-                </p>
-              </div>
-
-              <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] tracking-[0.25em] text-slate-600">
-                VORA / CELESTIAL REFERENCE
-              </div>
-            </div>
-          </div>
+  <p className="pointer-events-none absolute bottom-[2%] left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] tracking-[0.25em] text-slate-500">
+    VORA / CELESTIAL REFERENCE
+  </p>
+</div>
         </div>
       </section>
 
@@ -255,7 +288,7 @@ export default function AtlasPage() {
                     </span>
 
                     <span className="text-sky-300 transition group-hover:translate-x-1">
-                      ↗
+                      
                     </span>
                   </div>
                 </div>

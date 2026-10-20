@@ -244,7 +244,7 @@ export default function DocumentationPage() {
                   </span>
 
                   <span className="text-slate-700 transition-colors group-hover:text-sky-300/60">
-                    ↗
+                    
                   </span>
                 </div>
 
@@ -402,7 +402,7 @@ export default function DocumentationPage() {
               className="inline-flex items-center gap-3 rounded-full border border-sky-300/40 px-6 py-3 text-sm text-slate-200 transition-all duration-300 hover:border-sky-200 hover:bg-sky-300/10 hover:text-white"
             >
               View projects
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true"></span>
             </Link>
           </div>
         </div>

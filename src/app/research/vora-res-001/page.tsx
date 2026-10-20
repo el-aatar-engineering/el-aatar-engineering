@@ -314,7 +314,7 @@ export default function VoraResearch001Page() {
                   rel="noreferrer"
                   className="rounded-full bg-sky-300 px-5 py-3 text-sm font-medium text-[#06101d] transition hover:bg-sky-200"
                 >
-                  Open report PDF ↗
+                  Open report PDF 
                 </a>
 
                 <a

@@ -158,7 +158,7 @@ export default function Home() {
                 className={`${secondaryButton} mt-9`}
               >
                 Explore our research
-                <span aria-hidden="true">↗</span>
+                <span aria-hidden="true"></span>
               </Link>
             </div>
 
@@ -497,7 +497,7 @@ export default function Home() {
                 className={`${secondaryButton} mt-9`}
               >
                 Explore missions
-                <span aria-hidden="true">↗</span>
+                <span aria-hidden="true"></span>
               </Link>
             </div>
 
@@ -584,7 +584,7 @@ export default function Home() {
                         className="text-base"
                         aria-hidden="true"
                       >
-                        ↗
+                        
                       </span>
                     </span>
 
@@ -612,7 +612,7 @@ export default function Home() {
             className={secondaryButton}
           >
             Explore all projects
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true"></span>
           </Link>
         </div>
       </section>
@@ -801,7 +801,7 @@ export default function Home() {
                 >
                   Open Cosmic Atlas
                   <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                    ↗
+                    
                   </span>
                 </Link>
 
@@ -854,7 +854,7 @@ export default function Home() {
               className={secondaryButton}
             >
               Open documentation
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true"></span>
             </Link>
 
           </div>

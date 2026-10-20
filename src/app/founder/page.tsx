@@ -56,28 +56,45 @@ export default function FounderPage() {
     <main className="min-h-screen overflow-hidden bg-[#050816] text-white">
       <Navbar />
 
-      {/* HERO — FULL-SCREEN ANIMATED GALAXY */}
-      <section className="relative isolate flex min-h-[780px] items-center overflow-hidden border-b border-white/[0.08] sm:min-h-[900px]">
-        {/* Galaxy image */}
-        <div className="pointer-events-none absolute inset-0 -z-30 overflow-hidden">
+      {/* HERO — CINEMATIC MILKY WAY JOURNEY */}
+      <section className="relative isolate flex min-h-[780px] items-center overflow-hidden border-b border-white/[0.08] bg-[#050816] sm:min-h-[900px]">
+        {/* Static fallback image */}
+        <div className="pointer-events-none absolute inset-0 -z-30">
           <Image
             src="/images/founder-space.png"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="galaxy-background object-cover object-center"
+            className="object-cover object-center"
           />
         </div>
 
-        {/* Smooth transition from dark text area into the galaxy */}
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-r from-[#050816]/85 via-[#050816]/40 to-[#050816]/10" />
+        {/* Animated galaxy video */}
+        <video
+          className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/images/founder-space.png"
+          aria-hidden="true"
+        >
+          <source
+            src="/videos/milky-way-zoom.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-        {/* Darken the lower edge to blend into the rest of the page */}
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#050816] via-[#050816]/10 to-[#050816]/35" />
+        {/* Dark cinematic tint */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[#050816]/20" />
 
-        {/* Subtle overall tint */}
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[#050816]/10" />
+        {/* Protect readability around the text */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#050816]/95 via-[#050816]/65 to-[#050816]/15" />
+
+        {/* Blend the video into the next section */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#050816] via-[#050816]/10 to-[#050816]/30" />
 
         <div className="container relative mx-auto px-6 py-28 sm:py-36 lg:py-40">
           <div className="max-w-4xl">
@@ -107,12 +124,11 @@ export default function FounderPage() {
                 className="inline-flex items-center rounded-full bg-blue-500 px-6 py-3.5 text-sm font-medium text-white transition hover:bg-blue-400"
               >
                 Explore VORA
-                <span className="ml-2">↗</span>
               </Link>
 
               <Link
                 href="/#contact"
-                className="inline-flex items-center rounded-full border border-white/25 bg-[#050816]/30 px-6 py-3.5 text-sm text-white backdrop-blur-sm transition hover:border-blue-300 hover:bg-white/[0.08]"
+                className="inline-flex items-center rounded-full border border-white/25 bg-[#050816]/40 px-6 py-3.5 text-sm text-white backdrop-blur-sm transition hover:border-blue-300 hover:bg-white/[0.08]"
               >
                 Contact VORA
               </Link>
@@ -127,6 +143,7 @@ export default function FounderPage() {
           </div>
         </div>
       </section>
+```
 
       {/* FOUNDER PROFILE */}
       <section className="relative border-b border-white/[0.08]">
@@ -261,7 +278,7 @@ export default function FounderPage() {
                         {principle.number}
                       </span>
                       <span className="text-lg text-slate-600 transition group-hover:text-blue-300">
-                        ↗
+                        
                       </span>
                     </div>
 
@@ -392,14 +409,14 @@ export default function FounderPage() {
               href="/projects"
               className="inline-flex items-center rounded-full border border-white/15 px-6 py-3 text-sm text-white transition hover:border-blue-300 hover:bg-white/[0.05]"
             >
-              Explore Projects <span className="ml-2">↗</span>
+              Explore Projects <span className="ml-2"></span>
             </Link>
 
             <Link
               href="/#contact"
               className="inline-flex items-center rounded-full bg-blue-500 px-6 py-3 text-sm font-medium text-white transition hover:bg-blue-400"
             >
-              Get in touch <span className="ml-2">↗</span>
+              Get in touch <span className="ml-2"></span>
             </Link>
           </div>
         </div>
