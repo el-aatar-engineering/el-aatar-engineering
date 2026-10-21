@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -25,10 +24,28 @@ export default function DesktopOnly({
     return <div className="min-h-screen bg-[#050816]" />;
   }
 
+ 
+  
   if (!isDesktop) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#050816] px-6 text-center text-white">
         <div className="max-w-md">
+          <div className="mb-8 flex items-center justify-center gap-3" aria-label="VORA">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 32 32"
+              className="h-9 w-9 text-blue-300"
+              fill="none"
+            >
+              <path
+                d="M3 7h7l6 15 6-15h7L19 27h-6L3 7Z"
+                fill="currentColor"
+              />
+            </svg>
+            <span className="text-2xl font-semibold tracking-[0.28em] text-white">
+              VORA
+            </span>
+          </div>
           <p className="text-sm font-medium tracking-[0.3em] text-blue-300">
             VORA / DESKTOP PREVIEW
           </p>
